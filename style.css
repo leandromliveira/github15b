@@ -1,0 +1,111 @@
+:root {
+  --verde-escuro: rgb(3, 107, 82);
+  --verde-claro: rgb(47, 193, 140);
+  --roxo-escuro: rgb(65, 25, 127);
+  --roxo-claro: rgb(137, 88, 163);
+  --azul-claro: rgb(0, 213, 226);
+  --azul-escuro: rgb(0, 109, 251);
+  --cinza-claro: rgb(225, 229, 235);
+  --cinza1: rgb(62, 66, 75);
+  --cinza2: rgb(40, 42, 47);
+  --cinza3: rgb(30, 31, 36);
+  --cinza4: rgb(26, 27, 28);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Montserrat', sans-serif;
+  color: white;
+  background-color: var(--cinza4);
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 60px;
+}
+
+header .logo-title {
+  display: flex;
+  align-items: center;
+}
+
+header .music-playing {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.steps {
+  display: flex;
+  justify-content: center;
+  padding: 50px;
+}
+
+.steps .step {
+  width: 30%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.steps .step h2 {
+  margin-bottom: 30px;
+}
+
+.genres-cards {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.genres-cards .genre {
+  background-color: var(--cinza3);
+  padding: 20px;
+  margin: 15px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+  transition: 0.1s;
+}
+
+.genres-cards .genre:hover {
+  background-color: var(--cinza2);
+}
+
+.genres-cards .genre img {
+  width: 160px;
+  margin-bottom: 20px;
+}
+
+.text-card {
+  background-color: var(--cinza2);
+  border-radius: 30px;
+  padding: 10px;
+  margin: 10px;
+  cursor: pointer;
+  transition: 0.1s;
+}
+
+.playlists-cards, .tracks-cards {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.text-card:hover {
+  background-color: var(--cinza1);
+}
+
+.item-selected {
+  background-color: var(--cinza-claro) !important;
+  color: var(--cinza4) !important;
+}
+
+
