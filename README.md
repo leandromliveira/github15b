@@ -1,4 +1,4 @@
-# Repositório das aulas ao vivo da Turma 15 - Tribo B
+# Repositório dos Mozões!!! 
 
 Este repositório armazena os códigos e scripts fornecidos durante a aula ao vivo pelas pessoas especialista da Trybe.
 
