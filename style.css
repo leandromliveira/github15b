@@ -24,6 +24,10 @@ body {
   background-color: var(--cinza4);
 }
 
+img {
+  width: 50px;
+}
+
 header {
   display: flex;
   justify-content: space-between;
