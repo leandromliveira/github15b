@@ -11,14 +11,44 @@ async function getRepositories(){
   return repositoryFilter;
 }
 
-function showMore(open_issues, url, created_at) {
+function showURL(name) {
+  const link = document.createElement('a');
+  link.innerText = 'Acesse ao Projeto';
+  link.href = `github.com/tryber/${name}`;
+  link.target ='_blank';
+  return link;
+}
+
+function showIssues(issues) {
+  const span = document.createElement('span');
+  span.innerText = `total de PR abertas ${issues}`;
+  return span;
+}
+//2021-09-23T16:26:19Z
+function showDate(date) {
+  date.split('').forEach((element, index)=>{
+    const year = '';
+    const month = '';
+    const day = '';
+    if(index < 3) {
+      year += element;
+    } 
+  })
+}
+
+
+function showMore(open_issues, url, created_at, name) {
   const project = document.querySelector('.project');
-  const arrayDeVariaveis = [url, open_issues, created_at, 'alunos'];
-  arrayDeVariaveis.forEach(element => {
-    const span = document.createElement('span');
-    span.innerText = element;
-    project.appendChild(span);    
-  });
+  const url2 = showURL(name);
+  const issues = showIssues(open_issues);
+  const date = showDate(created_at);
+  
+  // const arrayDeVariaveis = [url, open_issues, created_at, 'alunos'];
+  // arrayDeVariaveis.forEach(element => {
+  //   const span = document.createElement('span');
+  //   span.innerText = element;
+  //   project.appendChild(span);    
+  // });
 }
 
 async function listProjects() {
@@ -32,7 +62,8 @@ async function listProjects() {
     }
     project.innerText = repository.name;
     project.classList.add(selected);
-    project.addEventListener('click', () => showMore(repository.open_issues, repository.url, repository.created_at))
+    project.addEventListener('click', () =>
+      showMore(repository.open_issues, repository.url, repository.created_at, repository.name));
     projects.appendChild(project);
   });
 }
