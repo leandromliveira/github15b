@@ -21,11 +21,12 @@
 body {
   font-family: 'Montserrat', sans-serif;
   color: white;
-  background-color: var(--cinza4);
+  background-color: var(--cinza1);
 }
 
-img {
+.students-details img {
   width: 50px;
+  border-radius: 50%;
 }
 
 header {
