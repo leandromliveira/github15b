@@ -12,7 +12,7 @@ async function getRepositories(){
 
 function showURL(name) {
   const link = document.createElement('a');
-  link.innerText = 'Acesse ao Projeto';
+  link.innerText = 'Acesse o Projeto';
   link.href = `https://github.com/tryber/${name}`;
   link.target ='_blank';
   return link;
@@ -81,7 +81,7 @@ async function showStudents(name) {
   studentsDetails.innerText = '';
   for (let index = 0; index < allStudents.length; index += 1) {
     studentsDetails.appendChild(showLogin(allStudents[index].login));
-    studentsDetails.appendChild(showAvatar(allStudents[index].avatar, allStudents[index].url));
+    studentsDetails.appendChild(showAvatar(allStudents[index].avatar, allStudents[index].html_url));
     studentsDetails.appendChild(await showFollowers(allStudents[index].followers));
   }
 }
@@ -94,7 +94,12 @@ function showButton(name) {
 }
 
 
-function showMore(open_issues, created_at, name) {
+function showMore(event, open_issues, created_at, name) {
+  const selected = document.querySelector('.selected');
+  if(selected) {
+    selected.classList.remove('selected');
+  }
+  event.target.classList.add('selected');
   const project = document.querySelector('.project-details');
   project.innerText = '';
   project.appendChild(showURL(name));
@@ -108,14 +113,9 @@ async function listProjects() {
   const repositories = await getRepositories();
   repositories.forEach(repository => {
     const project = document.createElement('p');
-    const selected = document.querySelector('.selected');
-    if(selected) {
-      selected.classList.remove('selected');
-    }
     project.innerText = repository.name;
-    project.classList.add(selected);
-    project.addEventListener('click', () =>
-      showMore(repository.open_issues, repository.created_at, repository.name));
+    project.addEventListener('click', (event) =>
+      showMore(event, repository.open_issues, repository.created_at, repository.name));
     projects.appendChild(project);
   });
 }
