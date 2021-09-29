@@ -18,7 +18,7 @@
   box-sizing: border-box;
 }
 
-a {
+.project-details a {
   display: block;
   text-decoration: none;
   color: white;
@@ -62,6 +62,12 @@ header .logo-title {
   transition: 0.5s ease-in-out;
 }
 
+.project-details {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 .project-details div{
   margin-bottom: 30px;
 }
@@ -81,4 +87,10 @@ header .logo-title {
 
 .steps .step h2 {
   margin-bottom: 30px;
+}
+
+.students-details {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }

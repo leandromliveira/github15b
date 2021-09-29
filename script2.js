@@ -10,9 +10,15 @@ async function getRepositories(){
   return repositoryFilter;
 }
 
+function showName(name) {
+  const div = document.createElement('div');
+  div.innerText = name.split('015-b-').pop();
+  return div;
+}
+
 function showURL(name) {
   const link = document.createElement('a');
-  link.innerText = 'Acesse o Projeto';
+  link.innerText = 'Acesse o projeto';
   link.href = `https://github.com/tryber/${name}`;
   link.target ='_blank';
   return link;
@@ -23,7 +29,6 @@ function showIssues(issues) {
   div.innerText = `total de PR abertas ${issues}`;
   return div;
 }
-//2021-09-23T16:26:19Z
 function showDate(date) {
   const div = document.createElement('div');
   let year = '';
@@ -45,14 +50,14 @@ function showDate(date) {
 }
 
 async function getStudents(name) {
-  const response = await fetch(`https://api.github.com/repos/tryber/${name}/issues?&sort=comments&per_page=3`);
+  const response = await fetch(`https://api.github.com/repos/tryber/${name}/issues?&sort=comments&per_page=10`);
   const data = await response.json();
-  return data.map(({user}) => ({login:user.login, avatar: user.avatar_url, url: user.url, followers: user.followers_url}))
+  return data.map(({user}) => ({login:user.login, avatar: user.avatar_url, url: user.html_url, followers: user.followers_url}))
 }
 
 function showLogin(login) {
   const div = document.createElement('div');
-  div.innerText = login;
+  div.innerText = `usuário: ${login}`;
   return div;
 }
 
@@ -71,7 +76,7 @@ async function showFollowers(followers_url) {
   const followers = await fetch(followers_url);
   const arrayFollowers = await followers.json();
   const div = document.createElement('div');
-  div.innerText = arrayFollowers.length;
+  div.innerText = `seguidores: ${arrayFollowers.length}`;
   return div;
 }
 
@@ -80,9 +85,10 @@ async function showStudents(name) {
   const studentsDetails = document.querySelector('.students-details');
   studentsDetails.innerText = '';
   for (let index = 0; index < allStudents.length; index += 1) {
+    studentsDetails.appendChild(showAvatar(allStudents[index].avatar, allStudents[index].url));
     studentsDetails.appendChild(showLogin(allStudents[index].login));
-    studentsDetails.appendChild(showAvatar(allStudents[index].avatar, allStudents[index].html_url));
     studentsDetails.appendChild(await showFollowers(allStudents[index].followers));
+    studentsDetails.appendChild(document.createElement('br'));
   }
 }
 
@@ -102,6 +108,7 @@ function showMore(event, open_issues, created_at, name) {
   event.target.classList.add('selected');
   const project = document.querySelector('.project-details');
   project.innerText = '';
+  project.appendChild(showName(name));
   project.appendChild(showURL(name));
   project.appendChild(showIssues(open_issues));
   project.appendChild(showDate(created_at));
