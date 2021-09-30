@@ -31,21 +31,7 @@ function showIssues(issues) {
 }
 function showDate(date) {
   const div = document.createElement('div');
-  let year = '';
-  let month = '';
-  let day = '';
-  date.split('').forEach((element, index)=>{
-    if(index < 4) {
-      year += element;
-    } 
-    if(index < 7 && index > 5) {
-      month += element;
-    } 
-    if(index < 10 && index > 8) {
-      day += element;
-    }
-  })
-  div.innerText = `projeto criado no dia ${day}/${month}/${year}`
+  div.innerText = `projeto criado no dia ${new Intl.DateTimeFormat('pt-BR').format(new Date(date))}`
   return div; 
 }
 
