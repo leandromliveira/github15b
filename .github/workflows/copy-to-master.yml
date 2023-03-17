@@ -1,0 +1,26 @@
+name: Global workflow to rule them all
+
+on:
+  push:
+      branches: dev
+
+jobs:
+
+  replicate_changes:
+
+      runs-on: ubuntu-latest
+
+      steps:
+        - name: Checkout repository
+          uses: actions/checkout@v2
+        - name: Replicating global workflow
+          uses: derberg/copy-files-to-other-repositories@v1.0.0
+          with:
+            github_token: ${{ secrets.GH_TOKEN  }}
+            patterns_to_ignore: '.github/workflows/copy-to-master2.yml'
+            patterns_to_include: '.github/workflows'
+            exclude_private: true
+            exclude_forked: true
+            committer_username: leandromliveira
+            committer_email: leandrooliveira35@gmail.com
+            commit_message: "ci: update global workflows"
